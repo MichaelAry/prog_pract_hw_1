@@ -33,7 +33,7 @@ int main()
 {
     int m, n, r, c;
     std::srand(std::time(0));
-    std::cout << "Enter the number of rows and columns for the original matrix: ";
+    std::cout << "rows and columns for the original matrix: ";
     std::cin >> m >> n;
     int *matr = new int[m * n];
     std::cout << "Original matrix:" << std::endl;
@@ -46,7 +46,7 @@ int main()
         }
         std::cout << std::endl;
     }
-    std::cout << "Enter the number of rows and columns for the reshaped matrix: ";
+    std::cout << "rows and columns for the reshaped matrix: ";
     std::cin >> r >> c;
     int *reshaped = reshapeMatrix(matr, m, n, r, c);
     std::cout << "Reshaped matrix:" << std::endl;
