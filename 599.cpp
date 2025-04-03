@@ -2,8 +2,8 @@
 #include <string>
 
 std::string *findRest(std::string *list1, int list1Size,
-                            std::string *list2, int list2Size,
-                            int *returnSize)
+                      std::string *list2, int list2Size,
+                      int *returnSize)
 {
     int maxPossible = list1Size < list2Size ? list1Size : list2Size;
     std::string *result = new std::string[maxPossible];

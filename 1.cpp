@@ -1,37 +1,28 @@
-/*      task 1
-Составить функцию, которая вычисляет значение определенно-
-го интеграла I =
+#include <iostream>
+#include <cmath>
 
-Z b
-a
-f(x)dx от произвольной функции одной
+double functionToTake(double x)
+{
+    return sin(x * x);
+}
 
-переменной по формуле правых прямоугольников:
+double integration(double a, double b, int n)
+{
+    double h = (b - a) / n;
+    double sum = 0.5 * (functionToTake(a) + functionToTake(b));
+    for (int i = 1; i < n; ++i)
+    {
+        sum += functionToTake(a + i * h);
+    }
+    return h * sum;
+}
 
-I ≈ h ·
-Xn
-i=1
-f(xi),
-
-где n фиксировано, h =
-b − a
-h
-, xi = x0 + ih; i = 0, 1, 2, . . . , n;
-
-x0 = a, xn = b.
-
-67
-
-Функцию проверить для вычисления интеграла Z π/4
-0
-sin x
-2
-dx.
-Значение функции f(t) = sin t вычислять с заданной точностью
-ε, используя разложение в ряд Тейлора: sin t = t −
-t
-3
-3! +
-t
-5
-5! − . . . .*/
+int main()
+{
+    double integralStart = 0;
+    double integralEnd = M_PI / 4;
+    int n = 2323;
+    double result = integration(integralStart, integralEnd, n);
+    std::cout << "integral value is about " << result << std::endl;
+    return 0;
+}
