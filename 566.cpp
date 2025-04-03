@@ -53,7 +53,7 @@ int main()
         }
         std::cout << std::endl;
     }
-    std::cout << "rows and columns for the reshaped matrix: ";
+
     do
     {
         validateEnter(r, c);
