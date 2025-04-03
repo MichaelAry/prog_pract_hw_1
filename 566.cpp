@@ -15,10 +15,7 @@ void matrixOut(int *matrix, int rows, int cols)
 
 int *reshapeMatrix(int *matr, int m, int n, int r, int c)
 {
-    if (m * n != r * c)
-    {
-        return matr;
-    }
+
     int *reshaped = new int[r * c];
     int *origPtr = matr;
     int *reshPtr = reshaped;
@@ -29,12 +26,22 @@ int *reshapeMatrix(int *matr, int m, int n, int r, int c)
     return reshaped;
 }
 
+void validateEnter(int &a, int &b)
+{
+    a = b = 0;
+    while ((a <= 0) || (b <= 0))
+    {
+        std::cout << "enter the correct number of rows and columns for the matrix: ";
+        std::cin >> a >> b;
+    }
+}
+
 int main()
 {
-    int m, n, r, c;
+    int m{0}, n{0}, r{0}, c{0};
     std::srand(std::time(0));
-    std::cout << "rows and columns for the original matrix: ";
-    std::cin >> m >> n;
+    validateEnter(m, n);
+
     int *matr = new int[m * n];
     std::cout << "Original matrix:" << std::endl;
     for (int i = 0; i < m; ++i)
@@ -47,7 +54,11 @@ int main()
         std::cout << std::endl;
     }
     std::cout << "rows and columns for the reshaped matrix: ";
-    std::cin >> r >> c;
+    do
+    {
+        validateEnter(r, c);
+    } while (r * c != m * n);
+
     int *reshaped = reshapeMatrix(matr, m, n, r, c);
     std::cout << "Reshaped matrix:" << std::endl;
     matrixOut(reshaped, r, c);
