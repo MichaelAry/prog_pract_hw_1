@@ -33,35 +33,48 @@ std::string *findRest(std::string *list1, int list1Size,
     return result;
 }
 
-void printResults(std::string *result, int size)
+void outResults(std::string *result, int size)
 {
-    std::cout << "[";
     for (int i = 0; i < size; ++i)
     {
-        std::cout << "\"" << result[i] << "\"";
+        std::cout << result[i];
         if (i < size - 1)
             std::cout << ", ";
     }
-    std::cout << "]" << std::endl;
 }
 
 int main()
 {
+    std::string *list1, *list2;
+    int size1, size2;
 
-    std::string list1[] = {"Shogun", "Tapioca Express", "Burger King", "KFC"};
-    std::string list2[] = {"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"};
-    int size1 = 4, size2 = 4;
+    std::cout << "enter the number of words for list1: ";
+    std::cin >> size1;
+
+    list1 = new std::string[size1];
+    std::cout << "enter the names of the words for list1 (one per line):" << std::endl;
+    for (int i = 0; i < size1; ++i)
+    {
+        std::cin >> list1[i];
+    }
+
+    std::cout << "enter the number of words for list2: ";
+    std::cin >> size2;
+
+    list2 = new std::string[size2];
+    std::cout << "enter the names of the words for list2 (one per line):" << std::endl;
+    for (int i = 0; i < size2; ++i)
+    {
+        std::cin >> list2[i];
+    }
+
     int returnSize;
     std::string *result = findRest(list1, size1, list2, size2, &returnSize);
-    std::cout << "Example 1 Output: ";
-    printResults(result, returnSize);
+    std::cout << "output: ";
+    outResults(result, returnSize);
     delete[] result;
-    std::string list3[] = {"Shogun", "Tapioca Express", "Burger King", "KFC"};
-    std::string list4[] = {"KFC", "Shogun", "Burger King"};
-    int size3 = 4, size4 = 3;
-    result = findRest(list3, size3, list4, size4, &returnSize);
-    std::cout << "Example 2 Output: ";
-    printResults(result, returnSize);
-    delete[] result;
+    delete[] list1;
+    delete[] list2;
+
     return 0;
 }
